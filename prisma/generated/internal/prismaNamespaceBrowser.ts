@@ -55,7 +55,6 @@ export const ModelName = {
   State: 'State',
   City: 'City',
   LocationZone: 'LocationZone',
-  LocationNeighborhood: 'LocationNeighborhood',
   Gender: 'Gender',
   AccountType: 'AccountType',
   Role: 'Role',
@@ -67,7 +66,8 @@ export const ModelName = {
   User: 'User',
   UserPassword: 'UserPassword',
   AuthSession: 'AuthSession',
-  UserProfile: 'UserProfile'
+  UserProfile: 'UserProfile',
+  MobileConfig: 'MobileConfig'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -140,21 +140,6 @@ export const LocationZoneScalarFieldEnum = {
 } as const
 
 export type LocationZoneScalarFieldEnum = (typeof LocationZoneScalarFieldEnum)[keyof typeof LocationZoneScalarFieldEnum]
-
-
-export const LocationNeighborhoodScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  code: 'code',
-  city_id: 'city_id',
-  zone_id: 'zone_id',
-  deleted: 'deleted',
-  updated_at: 'updated_at',
-  created_at: 'created_at',
-  deleted_at: 'deleted_at'
-} as const
-
-export type LocationNeighborhoodScalarFieldEnum = (typeof LocationNeighborhoodScalarFieldEnum)[keyof typeof LocationNeighborhoodScalarFieldEnum]
 
 
 export const GenderScalarFieldEnum = {
@@ -269,6 +254,8 @@ export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
+  avatar_url: 'avatar_url',
+  cover_url: 'cover_url',
   account_type_id: 'account_type_id',
   role_id: 'role_id',
   deleted: 'deleted',
@@ -329,6 +316,21 @@ export const UserProfileScalarFieldEnum = {
 } as const
 
 export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
+
+
+export const MobileConfigScalarFieldEnum = {
+  id: 'id',
+  api_base_url: 'api_base_url',
+  x_api_key: 'x_api_key',
+  api_geocoding_base_url: 'api_geocoding_base_url',
+  api_geocoding_api_key: 'api_geocoding_api_key',
+  deleted: 'deleted',
+  updated_at: 'updated_at',
+  created_at: 'created_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type MobileConfigScalarFieldEnum = (typeof MobileConfigScalarFieldEnum)[keyof typeof MobileConfigScalarFieldEnum]
 
 
 export const SortOrder = {

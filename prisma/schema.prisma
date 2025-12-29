@@ -56,9 +56,8 @@ model City {
   created_at DateTime  @default(now())
   deleted_at DateTime?
 
-  State                 State                  @relation(fields: [state_id], references: [id], onDelete: Cascade)
-  locationZones         LocationZone[]
-  LocationNeighborhoods LocationNeighborhood[]
+  State         State          @relation(fields: [state_id], references: [id], onDelete: Cascade)
+  locationZones LocationZone[]
 
   @@index([state_id])
   @@map("cities")
@@ -74,30 +73,10 @@ model LocationZone {
   created_at DateTime  @default(now())
   deleted_at DateTime?
 
-  City                  City                   @relation(fields: [city_id], references: [id], onDelete: Cascade)
-  LocationNeighborhoods LocationNeighborhood[]
+  City City @relation(fields: [city_id], references: [id], onDelete: Cascade)
 
   @@index([city_id])
   @@map("location_zones")
-}
-
-model LocationNeighborhood {
-  id         String    @id @default(ulid())
-  name       String    @db.VarChar(256)
-  code       String    @unique @db.VarChar(120)
-  city_id    String
-  zone_id    String
-  deleted    Boolean   @default(false)
-  updated_at DateTime  @default(now()) @updatedAt
-  created_at DateTime  @default(now())
-  deleted_at DateTime?
-
-  City          City         @relation(fields: [city_id], references: [id], onDelete: Cascade)
-  locationZones LocationZone @relation(fields: [zone_id], references: [id], onDelete: Cascade)
-
-  @@index([city_id])
-  @@index([zone_id])
-  @@map("location_neighborhoods")
 }
 
 model Gender {
@@ -127,8 +106,9 @@ model AccountType {
   deleted_at      DateTime?
 
   users User[]
-  role  Role   @relation(fields: [default_role_id], references: [id], onDelete: Cascade)
+  role  Role   @relation(fields: [default_role_id], references: [id])
 
+  @@index([default_role_id])
   @@map("account_types")
 }
 
@@ -228,6 +208,8 @@ model User {
   id              String    @id @default(ulid())
   name            String    @db.VarChar(32)
   email           String    @unique @db.VarChar(120)
+  avatar_url      String?   @db.Text
+  cover_url       String?   @db.Text
   account_type_id String
   role_id         String
   deleted         Boolean   @default(false)
@@ -235,8 +217,8 @@ model User {
   created_at      DateTime  @default(now())
   deleted_at      DateTime?
 
-  accountType  AccountType    @relation(fields: [account_type_id], references: [id], onDelete: Cascade)
-  role         Role           @relation(fields: [role_id], references: [id], onDelete: Cascade)
+  accountType  AccountType    @relation(fields: [account_type_id], references: [id])
+  role         Role           @relation(fields: [role_id], references: [id])
   authSessions AuthSession[]
   passwords    UserPassword[]
   userProfiles UserProfile[]
@@ -298,8 +280,8 @@ model UserProfile {
   deleted_at    DateTime?
 
   user                 User                  @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  gender               Gender                @relation(fields: [gender_id], references: [id], onDelete: Cascade)
-  hairColor            ProfileHairColor      @relation(fields: [hair_color_id], references: [id], onDelete: Cascade)
+  gender               Gender                @relation(fields: [gender_id], references: [id])
+  hairColor            ProfileHairColor      @relation(fields: [hair_color_id], references: [id])
   userProfileLanguages UserProfileLanguage[]
   userProfileServices  UserProfileService[]
 

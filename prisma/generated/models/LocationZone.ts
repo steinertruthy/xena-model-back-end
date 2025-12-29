@@ -207,7 +207,6 @@ export type LocationZoneWhereInput = {
   created_at?: Prisma.DateTimeFilter<"LocationZone"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"LocationZone"> | Date | string | null
   City?: Prisma.XOR<Prisma.CityScalarRelationFilter, Prisma.CityWhereInput>
-  LocationNeighborhoods?: Prisma.LocationNeighborhoodListRelationFilter
 }
 
 export type LocationZoneOrderByWithRelationInput = {
@@ -220,7 +219,6 @@ export type LocationZoneOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   City?: Prisma.CityOrderByWithRelationInput
-  LocationNeighborhoods?: Prisma.LocationNeighborhoodOrderByRelationAggregateInput
 }
 
 export type LocationZoneWhereUniqueInput = Prisma.AtLeast<{
@@ -236,7 +234,6 @@ export type LocationZoneWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"LocationZone"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"LocationZone"> | Date | string | null
   City?: Prisma.XOR<Prisma.CityScalarRelationFilter, Prisma.CityWhereInput>
-  LocationNeighborhoods?: Prisma.LocationNeighborhoodListRelationFilter
 }, "id" | "code">
 
 export type LocationZoneOrderByWithAggregationInput = {
@@ -276,7 +273,6 @@ export type LocationZoneCreateInput = {
   created_at?: Date | string
   deleted_at?: Date | string | null
   City: Prisma.CityCreateNestedOneWithoutLocationZonesInput
-  LocationNeighborhoods?: Prisma.LocationNeighborhoodCreateNestedManyWithoutLocationZonesInput
 }
 
 export type LocationZoneUncheckedCreateInput = {
@@ -288,7 +284,6 @@ export type LocationZoneUncheckedCreateInput = {
   updated_at?: Date | string
   created_at?: Date | string
   deleted_at?: Date | string | null
-  LocationNeighborhoods?: Prisma.LocationNeighborhoodUncheckedCreateNestedManyWithoutLocationZonesInput
 }
 
 export type LocationZoneUpdateInput = {
@@ -300,7 +295,6 @@ export type LocationZoneUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   City?: Prisma.CityUpdateOneRequiredWithoutLocationZonesNestedInput
-  LocationNeighborhoods?: Prisma.LocationNeighborhoodUpdateManyWithoutLocationZonesNestedInput
 }
 
 export type LocationZoneUncheckedUpdateInput = {
@@ -312,7 +306,6 @@ export type LocationZoneUncheckedUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  LocationNeighborhoods?: Prisma.LocationNeighborhoodUncheckedUpdateManyWithoutLocationZonesNestedInput
 }
 
 export type LocationZoneCreateManyInput = {
@@ -390,11 +383,6 @@ export type LocationZoneMinOrderByAggregateInput = {
   deleted_at?: Prisma.SortOrder
 }
 
-export type LocationZoneScalarRelationFilter = {
-  is?: Prisma.LocationZoneWhereInput
-  isNot?: Prisma.LocationZoneWhereInput
-}
-
 export type LocationZoneCreateNestedManyWithoutCityInput = {
   create?: Prisma.XOR<Prisma.LocationZoneCreateWithoutCityInput, Prisma.LocationZoneUncheckedCreateWithoutCityInput> | Prisma.LocationZoneCreateWithoutCityInput[] | Prisma.LocationZoneUncheckedCreateWithoutCityInput[]
   connectOrCreate?: Prisma.LocationZoneCreateOrConnectWithoutCityInput | Prisma.LocationZoneCreateOrConnectWithoutCityInput[]
@@ -437,20 +425,6 @@ export type LocationZoneUncheckedUpdateManyWithoutCityNestedInput = {
   deleteMany?: Prisma.LocationZoneScalarWhereInput | Prisma.LocationZoneScalarWhereInput[]
 }
 
-export type LocationZoneCreateNestedOneWithoutLocationNeighborhoodsInput = {
-  create?: Prisma.XOR<Prisma.LocationZoneCreateWithoutLocationNeighborhoodsInput, Prisma.LocationZoneUncheckedCreateWithoutLocationNeighborhoodsInput>
-  connectOrCreate?: Prisma.LocationZoneCreateOrConnectWithoutLocationNeighborhoodsInput
-  connect?: Prisma.LocationZoneWhereUniqueInput
-}
-
-export type LocationZoneUpdateOneRequiredWithoutLocationNeighborhoodsNestedInput = {
-  create?: Prisma.XOR<Prisma.LocationZoneCreateWithoutLocationNeighborhoodsInput, Prisma.LocationZoneUncheckedCreateWithoutLocationNeighborhoodsInput>
-  connectOrCreate?: Prisma.LocationZoneCreateOrConnectWithoutLocationNeighborhoodsInput
-  upsert?: Prisma.LocationZoneUpsertWithoutLocationNeighborhoodsInput
-  connect?: Prisma.LocationZoneWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationZoneUpdateToOneWithWhereWithoutLocationNeighborhoodsInput, Prisma.LocationZoneUpdateWithoutLocationNeighborhoodsInput>, Prisma.LocationZoneUncheckedUpdateWithoutLocationNeighborhoodsInput>
-}
-
 export type LocationZoneCreateWithoutCityInput = {
   id?: string
   name: string
@@ -459,7 +433,6 @@ export type LocationZoneCreateWithoutCityInput = {
   updated_at?: Date | string
   created_at?: Date | string
   deleted_at?: Date | string | null
-  LocationNeighborhoods?: Prisma.LocationNeighborhoodCreateNestedManyWithoutLocationZonesInput
 }
 
 export type LocationZoneUncheckedCreateWithoutCityInput = {
@@ -470,7 +443,6 @@ export type LocationZoneUncheckedCreateWithoutCityInput = {
   updated_at?: Date | string
   created_at?: Date | string
   deleted_at?: Date | string | null
-  LocationNeighborhoods?: Prisma.LocationNeighborhoodUncheckedCreateNestedManyWithoutLocationZonesInput
 }
 
 export type LocationZoneCreateOrConnectWithoutCityInput = {
@@ -513,66 +485,6 @@ export type LocationZoneScalarWhereInput = {
   deleted_at?: Prisma.DateTimeNullableFilter<"LocationZone"> | Date | string | null
 }
 
-export type LocationZoneCreateWithoutLocationNeighborhoodsInput = {
-  id?: string
-  name: string
-  code: string
-  deleted?: boolean
-  updated_at?: Date | string
-  created_at?: Date | string
-  deleted_at?: Date | string | null
-  City: Prisma.CityCreateNestedOneWithoutLocationZonesInput
-}
-
-export type LocationZoneUncheckedCreateWithoutLocationNeighborhoodsInput = {
-  id?: string
-  name: string
-  code: string
-  city_id: string
-  deleted?: boolean
-  updated_at?: Date | string
-  created_at?: Date | string
-  deleted_at?: Date | string | null
-}
-
-export type LocationZoneCreateOrConnectWithoutLocationNeighborhoodsInput = {
-  where: Prisma.LocationZoneWhereUniqueInput
-  create: Prisma.XOR<Prisma.LocationZoneCreateWithoutLocationNeighborhoodsInput, Prisma.LocationZoneUncheckedCreateWithoutLocationNeighborhoodsInput>
-}
-
-export type LocationZoneUpsertWithoutLocationNeighborhoodsInput = {
-  update: Prisma.XOR<Prisma.LocationZoneUpdateWithoutLocationNeighborhoodsInput, Prisma.LocationZoneUncheckedUpdateWithoutLocationNeighborhoodsInput>
-  create: Prisma.XOR<Prisma.LocationZoneCreateWithoutLocationNeighborhoodsInput, Prisma.LocationZoneUncheckedCreateWithoutLocationNeighborhoodsInput>
-  where?: Prisma.LocationZoneWhereInput
-}
-
-export type LocationZoneUpdateToOneWithWhereWithoutLocationNeighborhoodsInput = {
-  where?: Prisma.LocationZoneWhereInput
-  data: Prisma.XOR<Prisma.LocationZoneUpdateWithoutLocationNeighborhoodsInput, Prisma.LocationZoneUncheckedUpdateWithoutLocationNeighborhoodsInput>
-}
-
-export type LocationZoneUpdateWithoutLocationNeighborhoodsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  City?: Prisma.CityUpdateOneRequiredWithoutLocationZonesNestedInput
-}
-
-export type LocationZoneUncheckedUpdateWithoutLocationNeighborhoodsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  city_id?: Prisma.StringFieldUpdateOperationsInput | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
-
 export type LocationZoneCreateManyCityInput = {
   id?: string
   name: string
@@ -591,7 +503,6 @@ export type LocationZoneUpdateWithoutCityInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  LocationNeighborhoods?: Prisma.LocationNeighborhoodUpdateManyWithoutLocationZonesNestedInput
 }
 
 export type LocationZoneUncheckedUpdateWithoutCityInput = {
@@ -602,7 +513,6 @@ export type LocationZoneUncheckedUpdateWithoutCityInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  LocationNeighborhoods?: Prisma.LocationNeighborhoodUncheckedUpdateManyWithoutLocationZonesNestedInput
 }
 
 export type LocationZoneUncheckedUpdateManyWithoutCityInput = {
@@ -616,35 +526,6 @@ export type LocationZoneUncheckedUpdateManyWithoutCityInput = {
 }
 
 
-/**
- * Count Type LocationZoneCountOutputType
- */
-
-export type LocationZoneCountOutputType = {
-  LocationNeighborhoods: number
-}
-
-export type LocationZoneCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  LocationNeighborhoods?: boolean | LocationZoneCountOutputTypeCountLocationNeighborhoodsArgs
-}
-
-/**
- * LocationZoneCountOutputType without action
- */
-export type LocationZoneCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the LocationZoneCountOutputType
-   */
-  select?: Prisma.LocationZoneCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * LocationZoneCountOutputType without action
- */
-export type LocationZoneCountOutputTypeCountLocationNeighborhoodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LocationNeighborhoodWhereInput
-}
-
 
 export type LocationZoneSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -656,8 +537,6 @@ export type LocationZoneSelect<ExtArgs extends runtime.Types.Extensions.Internal
   created_at?: boolean
   deleted_at?: boolean
   City?: boolean | Prisma.CityDefaultArgs<ExtArgs>
-  LocationNeighborhoods?: boolean | Prisma.LocationZone$LocationNeighborhoodsArgs<ExtArgs>
-  _count?: boolean | Prisma.LocationZoneCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["locationZone"]>
 
 export type LocationZoneSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -698,8 +577,6 @@ export type LocationZoneSelectScalar = {
 export type LocationZoneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "city_id" | "deleted" | "updated_at" | "created_at" | "deleted_at", ExtArgs["result"]["locationZone"]>
 export type LocationZoneInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   City?: boolean | Prisma.CityDefaultArgs<ExtArgs>
-  LocationNeighborhoods?: boolean | Prisma.LocationZone$LocationNeighborhoodsArgs<ExtArgs>
-  _count?: boolean | Prisma.LocationZoneCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LocationZoneIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   City?: boolean | Prisma.CityDefaultArgs<ExtArgs>
@@ -712,7 +589,6 @@ export type $LocationZonePayload<ExtArgs extends runtime.Types.Extensions.Intern
   name: "LocationZone"
   objects: {
     City: Prisma.$CityPayload<ExtArgs>
-    LocationNeighborhoods: Prisma.$LocationNeighborhoodPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1118,7 +994,6 @@ readonly fields: LocationZoneFieldRefs;
 export interface Prisma__LocationZoneClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   City<T extends Prisma.CityDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CityDefaultArgs<ExtArgs>>): Prisma.Prisma__CityClient<runtime.Types.Result.GetResult<Prisma.$CityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  LocationNeighborhoods<T extends Prisma.LocationZone$LocationNeighborhoodsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationZone$LocationNeighborhoodsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LocationNeighborhoodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1549,30 +1424,6 @@ export type LocationZoneDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many LocationZones to delete.
    */
   limit?: number
-}
-
-/**
- * LocationZone.LocationNeighborhoods
- */
-export type LocationZone$LocationNeighborhoodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the LocationNeighborhood
-   */
-  select?: Prisma.LocationNeighborhoodSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the LocationNeighborhood
-   */
-  omit?: Prisma.LocationNeighborhoodOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LocationNeighborhoodInclude<ExtArgs> | null
-  where?: Prisma.LocationNeighborhoodWhereInput
-  orderBy?: Prisma.LocationNeighborhoodOrderByWithRelationInput | Prisma.LocationNeighborhoodOrderByWithRelationInput[]
-  cursor?: Prisma.LocationNeighborhoodWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.LocationNeighborhoodScalarFieldEnum | Prisma.LocationNeighborhoodScalarFieldEnum[]
 }
 
 /**

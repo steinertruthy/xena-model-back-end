@@ -1,17 +1,16 @@
 import fastifyCookie from '@fastify/cookie';
 import { ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
-
 import { AppModule } from './app.module';
-import { TEnvConfigSchema } from 'src/config/env.config';
-import { ConfigService } from '@nestjs/config';
+import { TEnvSchema } from './common/schemas/env.schema';
 
 async function bootstrap() {
-  const configService = new ConfigService<TEnvConfigSchema>();
+  const configService = new ConfigService<TEnvSchema>();
 
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
@@ -29,6 +28,9 @@ async function bootstrap() {
   await app.register(fastifyCookie, {
     secret: configService.get<string>('COOKIE_SECRET_KEY'),
   });
-  await app.listen(configService.get<string>('PORT') ?? 3000, '192.168.18.12');
+  await app.listen(
+    configService.get<string>('PORT') ?? 3000,
+    configService.get('HOST'),
+  );
 }
 bootstrap();

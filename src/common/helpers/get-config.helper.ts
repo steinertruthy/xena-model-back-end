@@ -1,11 +1,11 @@
 import { ConfigGetOptions, ConfigService } from '@nestjs/config';
-import { TEnvConfigSchema } from 'src/config/env.config';
+import { TEnvSchema } from '../schemas/env.schema';
 
 export const getConfig = <T = string>(
-  config: keyof TEnvConfigSchema,
+  config: keyof TEnvSchema,
   options?: ConfigGetOptions,
 ): T => {
-  const configService = new ConfigService<TEnvConfigSchema>();
+  const configService = new ConfigService<TEnvSchema>();
 
   if (options) {
     return configService.get(config, options) as T;

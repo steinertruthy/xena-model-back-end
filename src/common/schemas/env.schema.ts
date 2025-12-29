@@ -4,7 +4,8 @@ import z from 'zod';
 const expireInAcceptedFormatsText =
   "Invalid format, examples of accepted formats: 2 days, 1d, 10h, 2.5 hrs, 1m, 5s, 1y, 100'";
 
-export const envConfigSchema = z.object({
+export const envSchema = z.object({
+  HOST: z.string(),
   PORT: z.string().trim(),
   NODE_ENV: z.enum(['developer', 'production']),
 
@@ -53,4 +54,4 @@ export const envConfigSchema = z.object({
   X_API_KEY: z.string().trim(),
 });
 
-export type TEnvConfigSchema = z.infer<typeof envConfigSchema>;
+export type TEnvSchema = z.infer<typeof envSchema>;

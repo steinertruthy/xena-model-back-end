@@ -388,7 +388,6 @@ export const ModelName = {
   State: 'State',
   City: 'City',
   LocationZone: 'LocationZone',
-  LocationNeighborhood: 'LocationNeighborhood',
   Gender: 'Gender',
   AccountType: 'AccountType',
   Role: 'Role',
@@ -400,7 +399,8 @@ export const ModelName = {
   User: 'User',
   UserPassword: 'UserPassword',
   AuthSession: 'AuthSession',
-  UserProfile: 'UserProfile'
+  UserProfile: 'UserProfile',
+  MobileConfig: 'MobileConfig'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -416,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "country" | "state" | "city" | "locationZone" | "locationNeighborhood" | "gender" | "accountType" | "role" | "profileLanguage" | "userProfileLanguage" | "profileService" | "userProfileService" | "profileHairColor" | "user" | "userPassword" | "authSession" | "userProfile"
+    modelProps: "country" | "state" | "city" | "locationZone" | "gender" | "accountType" | "role" | "profileLanguage" | "userProfileLanguage" | "profileService" | "userProfileService" | "profileHairColor" | "user" | "userPassword" | "authSession" | "userProfile" | "mobileConfig"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -713,80 +713,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.LocationZoneCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.LocationZoneCountAggregateOutputType> | number
-        }
-      }
-    }
-    LocationNeighborhood: {
-      payload: Prisma.$LocationNeighborhoodPayload<ExtArgs>
-      fields: Prisma.LocationNeighborhoodFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.LocationNeighborhoodFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationNeighborhoodPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.LocationNeighborhoodFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationNeighborhoodPayload>
-        }
-        findFirst: {
-          args: Prisma.LocationNeighborhoodFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationNeighborhoodPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.LocationNeighborhoodFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationNeighborhoodPayload>
-        }
-        findMany: {
-          args: Prisma.LocationNeighborhoodFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationNeighborhoodPayload>[]
-        }
-        create: {
-          args: Prisma.LocationNeighborhoodCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationNeighborhoodPayload>
-        }
-        createMany: {
-          args: Prisma.LocationNeighborhoodCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.LocationNeighborhoodCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationNeighborhoodPayload>[]
-        }
-        delete: {
-          args: Prisma.LocationNeighborhoodDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationNeighborhoodPayload>
-        }
-        update: {
-          args: Prisma.LocationNeighborhoodUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationNeighborhoodPayload>
-        }
-        deleteMany: {
-          args: Prisma.LocationNeighborhoodDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.LocationNeighborhoodUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.LocationNeighborhoodUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationNeighborhoodPayload>[]
-        }
-        upsert: {
-          args: Prisma.LocationNeighborhoodUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationNeighborhoodPayload>
-        }
-        aggregate: {
-          args: Prisma.LocationNeighborhoodAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateLocationNeighborhood>
-        }
-        groupBy: {
-          args: Prisma.LocationNeighborhoodGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.LocationNeighborhoodGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.LocationNeighborhoodCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.LocationNeighborhoodCountAggregateOutputType> | number
         }
       }
     }
@@ -1678,6 +1604,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MobileConfig: {
+      payload: Prisma.$MobileConfigPayload<ExtArgs>
+      fields: Prisma.MobileConfigFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MobileConfigFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileConfigPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MobileConfigFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileConfigPayload>
+        }
+        findFirst: {
+          args: Prisma.MobileConfigFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileConfigPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MobileConfigFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileConfigPayload>
+        }
+        findMany: {
+          args: Prisma.MobileConfigFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileConfigPayload>[]
+        }
+        create: {
+          args: Prisma.MobileConfigCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileConfigPayload>
+        }
+        createMany: {
+          args: Prisma.MobileConfigCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MobileConfigCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileConfigPayload>[]
+        }
+        delete: {
+          args: Prisma.MobileConfigDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileConfigPayload>
+        }
+        update: {
+          args: Prisma.MobileConfigUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileConfigPayload>
+        }
+        deleteMany: {
+          args: Prisma.MobileConfigDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MobileConfigUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MobileConfigUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileConfigPayload>[]
+        }
+        upsert: {
+          args: Prisma.MobileConfigUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileConfigPayload>
+        }
+        aggregate: {
+          args: Prisma.MobileConfigAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMobileConfig>
+        }
+        groupBy: {
+          args: Prisma.MobileConfigGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MobileConfigGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MobileConfigCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MobileConfigCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1771,21 +1771,6 @@ export const LocationZoneScalarFieldEnum = {
 } as const
 
 export type LocationZoneScalarFieldEnum = (typeof LocationZoneScalarFieldEnum)[keyof typeof LocationZoneScalarFieldEnum]
-
-
-export const LocationNeighborhoodScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  code: 'code',
-  city_id: 'city_id',
-  zone_id: 'zone_id',
-  deleted: 'deleted',
-  updated_at: 'updated_at',
-  created_at: 'created_at',
-  deleted_at: 'deleted_at'
-} as const
-
-export type LocationNeighborhoodScalarFieldEnum = (typeof LocationNeighborhoodScalarFieldEnum)[keyof typeof LocationNeighborhoodScalarFieldEnum]
 
 
 export const GenderScalarFieldEnum = {
@@ -1900,6 +1885,8 @@ export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
+  avatar_url: 'avatar_url',
+  cover_url: 'cover_url',
   account_type_id: 'account_type_id',
   role_id: 'role_id',
   deleted: 'deleted',
@@ -1960,6 +1947,21 @@ export const UserProfileScalarFieldEnum = {
 } as const
 
 export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
+
+
+export const MobileConfigScalarFieldEnum = {
+  id: 'id',
+  api_base_url: 'api_base_url',
+  x_api_key: 'x_api_key',
+  api_geocoding_base_url: 'api_geocoding_base_url',
+  api_geocoding_api_key: 'api_geocoding_api_key',
+  deleted: 'deleted',
+  updated_at: 'updated_at',
+  created_at: 'created_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type MobileConfigScalarFieldEnum = (typeof MobileConfigScalarFieldEnum)[keyof typeof MobileConfigScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2153,7 +2155,6 @@ export type GlobalOmitConfig = {
   state?: Prisma.StateOmit
   city?: Prisma.CityOmit
   locationZone?: Prisma.LocationZoneOmit
-  locationNeighborhood?: Prisma.LocationNeighborhoodOmit
   gender?: Prisma.GenderOmit
   accountType?: Prisma.AccountTypeOmit
   role?: Prisma.RoleOmit
@@ -2166,6 +2167,7 @@ export type GlobalOmitConfig = {
   userPassword?: Prisma.UserPasswordOmit
   authSession?: Prisma.AuthSessionOmit
   userProfile?: Prisma.UserProfileOmit
+  mobileConfig?: Prisma.MobileConfigOmit
 }
 
 /* Types for Logging */

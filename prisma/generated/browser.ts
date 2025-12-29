@@ -38,11 +38,6 @@ export type City = Prisma.CityModel
  */
 export type LocationZone = Prisma.LocationZoneModel
 /**
- * Model LocationNeighborhood
- * 
- */
-export type LocationNeighborhood = Prisma.LocationNeighborhoodModel
-/**
  * Model Gender
  * 
  */
@@ -102,3 +97,8 @@ export type AuthSession = Prisma.AuthSessionModel
  * 
  */
 export type UserProfile = Prisma.UserProfileModel
+/**
+ * Model MobileConfig
+ * 
+ */
+export type MobileConfig = Prisma.MobileConfigModel

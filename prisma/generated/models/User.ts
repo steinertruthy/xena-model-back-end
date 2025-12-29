@@ -28,6 +28,8 @@ export type UserMinAggregateOutputType = {
   id: string | null
   name: string | null
   email: string | null
+  avatar_url: string | null
+  cover_url: string | null
   account_type_id: string | null
   role_id: string | null
   deleted: boolean | null
@@ -40,6 +42,8 @@ export type UserMaxAggregateOutputType = {
   id: string | null
   name: string | null
   email: string | null
+  avatar_url: string | null
+  cover_url: string | null
   account_type_id: string | null
   role_id: string | null
   deleted: boolean | null
@@ -52,6 +56,8 @@ export type UserCountAggregateOutputType = {
   id: number
   name: number
   email: number
+  avatar_url: number
+  cover_url: number
   account_type_id: number
   role_id: number
   deleted: number
@@ -66,6 +72,8 @@ export type UserMinAggregateInputType = {
   id?: true
   name?: true
   email?: true
+  avatar_url?: true
+  cover_url?: true
   account_type_id?: true
   role_id?: true
   deleted?: true
@@ -78,6 +86,8 @@ export type UserMaxAggregateInputType = {
   id?: true
   name?: true
   email?: true
+  avatar_url?: true
+  cover_url?: true
   account_type_id?: true
   role_id?: true
   deleted?: true
@@ -90,6 +100,8 @@ export type UserCountAggregateInputType = {
   id?: true
   name?: true
   email?: true
+  avatar_url?: true
+  cover_url?: true
   account_type_id?: true
   role_id?: true
   deleted?: true
@@ -175,6 +187,8 @@ export type UserGroupByOutputType = {
   id: string
   name: string
   email: string
+  avatar_url: string | null
+  cover_url: string | null
   account_type_id: string
   role_id: string
   deleted: boolean
@@ -208,6 +222,8 @@ export type UserWhereInput = {
   id?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
+  avatar_url?: Prisma.StringNullableFilter<"User"> | string | null
+  cover_url?: Prisma.StringNullableFilter<"User"> | string | null
   account_type_id?: Prisma.StringFilter<"User"> | string
   role_id?: Prisma.StringFilter<"User"> | string
   deleted?: Prisma.BoolFilter<"User"> | boolean
@@ -225,6 +241,8 @@ export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  avatar_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  cover_url?: Prisma.SortOrderInput | Prisma.SortOrder
   account_type_id?: Prisma.SortOrder
   role_id?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -245,6 +263,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringFilter<"User"> | string
+  avatar_url?: Prisma.StringNullableFilter<"User"> | string | null
+  cover_url?: Prisma.StringNullableFilter<"User"> | string | null
   account_type_id?: Prisma.StringFilter<"User"> | string
   role_id?: Prisma.StringFilter<"User"> | string
   deleted?: Prisma.BoolFilter<"User"> | boolean
@@ -262,6 +282,8 @@ export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  avatar_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  cover_url?: Prisma.SortOrderInput | Prisma.SortOrder
   account_type_id?: Prisma.SortOrder
   role_id?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -280,6 +302,8 @@ export type UserScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
+  avatar_url?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  cover_url?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   account_type_id?: Prisma.StringWithAggregatesFilter<"User"> | string
   role_id?: Prisma.StringWithAggregatesFilter<"User"> | string
   deleted?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
@@ -292,6 +316,8 @@ export type UserCreateInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   deleted?: boolean
   updated_at?: Date | string
   created_at?: Date | string
@@ -307,6 +333,8 @@ export type UserUncheckedCreateInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   account_type_id: string
   role_id: string
   deleted?: boolean
@@ -322,6 +350,8 @@ export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -337,6 +367,8 @@ export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   account_type_id?: Prisma.StringFieldUpdateOperationsInput | string
   role_id?: Prisma.StringFieldUpdateOperationsInput | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -352,6 +384,8 @@ export type UserCreateManyInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   account_type_id: string
   role_id: string
   deleted?: boolean
@@ -364,6 +398,8 @@ export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -374,6 +410,8 @@ export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   account_type_id?: Prisma.StringFieldUpdateOperationsInput | string
   role_id?: Prisma.StringFieldUpdateOperationsInput | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -396,6 +434,8 @@ export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  avatar_url?: Prisma.SortOrder
+  cover_url?: Prisma.SortOrder
   account_type_id?: Prisma.SortOrder
   role_id?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -408,6 +448,8 @@ export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  avatar_url?: Prisma.SortOrder
+  cover_url?: Prisma.SortOrder
   account_type_id?: Prisma.SortOrder
   role_id?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -420,6 +462,8 @@ export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  avatar_url?: Prisma.SortOrder
+  cover_url?: Prisma.SortOrder
   account_type_id?: Prisma.SortOrder
   role_id?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -563,6 +607,8 @@ export type UserCreateWithoutAccountTypeInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   deleted?: boolean
   updated_at?: Date | string
   created_at?: Date | string
@@ -577,6 +623,8 @@ export type UserUncheckedCreateWithoutAccountTypeInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   role_id: string
   deleted?: boolean
   updated_at?: Date | string
@@ -620,6 +668,8 @@ export type UserScalarWhereInput = {
   id?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
+  avatar_url?: Prisma.StringNullableFilter<"User"> | string | null
+  cover_url?: Prisma.StringNullableFilter<"User"> | string | null
   account_type_id?: Prisma.StringFilter<"User"> | string
   role_id?: Prisma.StringFilter<"User"> | string
   deleted?: Prisma.BoolFilter<"User"> | boolean
@@ -632,6 +682,8 @@ export type UserCreateWithoutRoleInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   deleted?: boolean
   updated_at?: Date | string
   created_at?: Date | string
@@ -646,6 +698,8 @@ export type UserUncheckedCreateWithoutRoleInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   account_type_id: string
   deleted?: boolean
   updated_at?: Date | string
@@ -686,6 +740,8 @@ export type UserCreateWithoutPasswordsInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   deleted?: boolean
   updated_at?: Date | string
   created_at?: Date | string
@@ -700,6 +756,8 @@ export type UserUncheckedCreateWithoutPasswordsInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   account_type_id: string
   role_id: string
   deleted?: boolean
@@ -730,6 +788,8 @@ export type UserUpdateWithoutPasswordsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -744,6 +804,8 @@ export type UserUncheckedUpdateWithoutPasswordsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   account_type_id?: Prisma.StringFieldUpdateOperationsInput | string
   role_id?: Prisma.StringFieldUpdateOperationsInput | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -758,6 +820,8 @@ export type UserCreateWithoutAuthSessionsInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   deleted?: boolean
   updated_at?: Date | string
   created_at?: Date | string
@@ -772,6 +836,8 @@ export type UserUncheckedCreateWithoutAuthSessionsInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   account_type_id: string
   role_id: string
   deleted?: boolean
@@ -802,6 +868,8 @@ export type UserUpdateWithoutAuthSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -816,6 +884,8 @@ export type UserUncheckedUpdateWithoutAuthSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   account_type_id?: Prisma.StringFieldUpdateOperationsInput | string
   role_id?: Prisma.StringFieldUpdateOperationsInput | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -830,6 +900,8 @@ export type UserCreateWithoutUserProfilesInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   deleted?: boolean
   updated_at?: Date | string
   created_at?: Date | string
@@ -844,6 +916,8 @@ export type UserUncheckedCreateWithoutUserProfilesInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   account_type_id: string
   role_id: string
   deleted?: boolean
@@ -874,6 +948,8 @@ export type UserUpdateWithoutUserProfilesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -888,6 +964,8 @@ export type UserUncheckedUpdateWithoutUserProfilesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   account_type_id?: Prisma.StringFieldUpdateOperationsInput | string
   role_id?: Prisma.StringFieldUpdateOperationsInput | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -902,6 +980,8 @@ export type UserCreateManyAccountTypeInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   role_id: string
   deleted?: boolean
   updated_at?: Date | string
@@ -913,6 +993,8 @@ export type UserUpdateWithoutAccountTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -927,6 +1009,8 @@ export type UserUncheckedUpdateWithoutAccountTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role_id?: Prisma.StringFieldUpdateOperationsInput | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -941,6 +1025,8 @@ export type UserUncheckedUpdateManyWithoutAccountTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role_id?: Prisma.StringFieldUpdateOperationsInput | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -952,6 +1038,8 @@ export type UserCreateManyRoleInput = {
   id?: string
   name: string
   email: string
+  avatar_url?: string | null
+  cover_url?: string | null
   account_type_id: string
   deleted?: boolean
   updated_at?: Date | string
@@ -963,6 +1051,8 @@ export type UserUpdateWithoutRoleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -977,6 +1067,8 @@ export type UserUncheckedUpdateWithoutRoleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   account_type_id?: Prisma.StringFieldUpdateOperationsInput | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -991,6 +1083,8 @@ export type UserUncheckedUpdateManyWithoutRoleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cover_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   account_type_id?: Prisma.StringFieldUpdateOperationsInput | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1051,6 +1145,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   name?: boolean
   email?: boolean
+  avatar_url?: boolean
+  cover_url?: boolean
   account_type_id?: boolean
   role_id?: boolean
   deleted?: boolean
@@ -1069,6 +1165,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   name?: boolean
   email?: boolean
+  avatar_url?: boolean
+  cover_url?: boolean
   account_type_id?: boolean
   role_id?: boolean
   deleted?: boolean
@@ -1083,6 +1181,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   name?: boolean
   email?: boolean
+  avatar_url?: boolean
+  cover_url?: boolean
   account_type_id?: boolean
   role_id?: boolean
   deleted?: boolean
@@ -1097,6 +1197,8 @@ export type UserSelectScalar = {
   id?: boolean
   name?: boolean
   email?: boolean
+  avatar_url?: boolean
+  cover_url?: boolean
   account_type_id?: boolean
   role_id?: boolean
   deleted?: boolean
@@ -1105,7 +1207,7 @@ export type UserSelectScalar = {
   deleted_at?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "account_type_id" | "role_id" | "deleted" | "updated_at" | "created_at" | "deleted_at", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "avatar_url" | "cover_url" | "account_type_id" | "role_id" | "deleted" | "updated_at" | "created_at" | "deleted_at", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accountType?: boolean | Prisma.AccountTypeDefaultArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
@@ -1136,6 +1238,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id: string
     name: string
     email: string
+    avatar_url: string | null
+    cover_url: string | null
     account_type_id: string
     role_id: string
     deleted: boolean
@@ -1573,6 +1677,8 @@ export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
+  readonly avatar_url: Prisma.FieldRef<"User", 'String'>
+  readonly cover_url: Prisma.FieldRef<"User", 'String'>
   readonly account_type_id: Prisma.FieldRef<"User", 'String'>
   readonly role_id: Prisma.FieldRef<"User", 'String'>
   readonly deleted: Prisma.FieldRef<"User", 'Boolean'>
