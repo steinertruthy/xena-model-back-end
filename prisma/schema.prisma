@@ -1,0 +1,324 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../prisma/generated"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Country {
+  id            String    @id @default(ulid())
+  name          String    @db.VarChar(72)
+  code          String    @unique @db.VarChar(8)
+  currency_code String    @db.VarChar(5)
+  deleted       Boolean   @default(false)
+  updated_at    DateTime  @default(now()) @updatedAt
+  created_at    DateTime  @default(now())
+  deleted_at    DateTime?
+
+  states State[]
+
+  @@map("countries")
+}
+
+model State {
+  id         String    @id @default(ulid())
+  name       String    @db.VarChar(72)
+  code       String    @unique @db.VarChar(8)
+  country_id String
+  deleted    Boolean   @default(false)
+  updated_at DateTime  @default(now()) @updatedAt
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+
+  country Country @relation(fields: [country_id], references: [id], onDelete: Cascade)
+  cities  City[]
+
+  @@index([country_id])
+  @@map("states")
+}
+
+model City {
+  id         String    @id @default(ulid())
+  name       String    @db.VarChar(72)
+  code       String    @unique @db.VarChar(8)
+  state_id   String
+  deleted    Boolean   @default(false)
+  updated_at DateTime  @default(now()) @updatedAt
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+
+  State                 State                  @relation(fields: [state_id], references: [id], onDelete: Cascade)
+  locationZones         LocationZone[]
+  LocationNeighborhoods LocationNeighborhood[]
+
+  @@index([state_id])
+  @@map("cities")
+}
+
+model LocationZone {
+  id         String    @id @default(ulid())
+  name       String    @db.VarChar(120)
+  code       String    @unique @db.VarChar(8)
+  city_id    String
+  deleted    Boolean   @default(false)
+  updated_at DateTime  @default(now()) @updatedAt
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+
+  City                  City                   @relation(fields: [city_id], references: [id], onDelete: Cascade)
+  LocationNeighborhoods LocationNeighborhood[]
+
+  @@index([city_id])
+  @@map("location_zones")
+}
+
+model LocationNeighborhood {
+  id         String    @id @default(ulid())
+  name       String    @db.VarChar(256)
+  code       String    @unique @db.VarChar(120)
+  city_id    String
+  zone_id    String
+  deleted    Boolean   @default(false)
+  updated_at DateTime  @default(now()) @updatedAt
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+
+  City          City         @relation(fields: [city_id], references: [id], onDelete: Cascade)
+  locationZones LocationZone @relation(fields: [zone_id], references: [id], onDelete: Cascade)
+
+  @@index([city_id])
+  @@index([zone_id])
+  @@map("location_neighborhoods")
+}
+
+model Gender {
+  id         String    @id @default(ulid())
+  name       String    @db.VarChar(24)
+  tag        String    @unique @db.VarChar(24)
+  deleted    Boolean   @default(false)
+  updated_at DateTime  @default(now()) @updatedAt
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+
+  userProfiles UserProfile[]
+
+  @@map("genders")
+}
+
+model AccountType {
+  id              String    @id @default(ulid())
+  name            String    @db.VarChar(24)
+  tag             String    @unique @db.VarChar(24)
+  description     String?   @db.VarChar(256)
+  is_public       Boolean   @default(false)
+  default_role_id String
+  deleted         Boolean   @default(false)
+  updated_at      DateTime  @default(now()) @updatedAt
+  created_at      DateTime  @default(now())
+  deleted_at      DateTime?
+
+  users User[]
+  role  Role   @relation(fields: [default_role_id], references: [id], onDelete: Cascade)
+
+  @@map("account_types")
+}
+
+model Role {
+  id          String    @id @default(ulid())
+  name        String    @db.VarChar(24)
+  tag         String    @unique @db.VarChar(24)
+  deleted     Boolean   @default(false)
+  description String?   @db.VarChar(256)
+  updated_at  DateTime  @default(now()) @updatedAt
+  created_at  DateTime  @default(now())
+  deleted_at  DateTime?
+
+  users        User[]
+  accountTypes AccountType[]
+
+  @@map("roles")
+}
+
+model ProfileLanguage {
+  id         String    @id @default(ulid())
+  name       String    @db.VarChar(32)
+  code       String    @unique @db.VarChar(8)
+  deleted    Boolean   @default(false)
+  updated_at DateTime  @default(now()) @updatedAt
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+
+  userProfileLanguages UserProfileLanguage[]
+
+  @@map("profile_languages")
+}
+
+model UserProfileLanguage {
+  id          String    @id @default(ulid())
+  profile_id  String
+  language_id String
+  deleted     Boolean   @default(false)
+  updated_at  DateTime  @default(now()) @updatedAt
+  created_at  DateTime  @default(now())
+  deleted_at  DateTime?
+
+  userProfile     UserProfile     @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+  profileLanguage ProfileLanguage @relation(fields: [language_id], references: [id], onDelete: Cascade)
+
+  @@unique([profile_id, language_id])
+  @@index([language_id])
+  @@map("user_profile_languages")
+}
+
+model ProfileService {
+  id         String    @id @default(ulid())
+  name       String    @db.VarChar(120)
+  tag        String    @unique @db.VarChar(120)
+  deleted    Boolean   @default(false)
+  updated_at DateTime  @default(now()) @updatedAt
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+
+  userProfileServices UserProfileService[]
+
+  @@map("profile_services")
+}
+
+model UserProfileService {
+  id         String    @id @default(ulid())
+  profile_id String
+  service_id String
+  deleted    Boolean   @default(false)
+  updated_at DateTime  @default(now()) @updatedAt
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+
+  userProfile    UserProfile    @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+  profileService ProfileService @relation(fields: [service_id], references: [id], onDelete: Cascade)
+
+  @@unique([profile_id, service_id])
+  @@index([service_id])
+  @@map("user_profile_services")
+}
+
+model ProfileHairColor {
+  id         String    @id @default(ulid())
+  name       String    @db.VarChar(24)
+  tag        String    @unique @db.VarChar(24)
+  deleted    Boolean   @default(false)
+  updated_at DateTime  @default(now()) @updatedAt
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+
+  userProfiles UserProfile[]
+
+  @@map("profile_hair_colors")
+}
+
+model User {
+  id              String    @id @default(ulid())
+  name            String    @db.VarChar(32)
+  email           String    @unique @db.VarChar(120)
+  account_type_id String
+  role_id         String
+  deleted         Boolean   @default(false)
+  updated_at      DateTime  @default(now()) @updatedAt
+  created_at      DateTime  @default(now())
+  deleted_at      DateTime?
+
+  accountType  AccountType    @relation(fields: [account_type_id], references: [id], onDelete: Cascade)
+  role         Role           @relation(fields: [role_id], references: [id], onDelete: Cascade)
+  authSessions AuthSession[]
+  passwords    UserPassword[]
+  userProfiles UserProfile[]
+
+  @@index([account_type_id])
+  @@index([role_id])
+  @@map("users")
+}
+
+model UserPassword {
+  id         String    @id @default(ulid())
+  user_id    String
+  hash       String    @unique @db.Text
+  deleted    Boolean   @default(false)
+  updated_at DateTime  @default(now()) @updatedAt
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@map("user_passwords")
+}
+
+model AuthSession {
+  id                 String   @id @default(ulid())
+  user_id            String
+  refresh_token      String   @unique @db.Text
+  device             String   @default("UNKNOWN") @db.VarChar(256)
+  ip                 String   @default("UNKNOWN") @db.VarChar(120)
+  expire_at          DateTime
+  original_expire_at DateTime
+  updated_at         DateTime @default(now()) @updatedAt
+  created_at         DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@map("auth_sessions")
+}
+
+model UserProfile {
+  id            String    @id @default(ulid())
+  user_id       String    @unique
+  gender_id     String
+  hair_color_id String
+  height        Float     @db.Real
+  foot_size     Int       @db.SmallInt
+  has_tattoo    Boolean   @default(false)
+  has_piercing  Boolean   @default(false)
+  is_smoker     Boolean   @default(false)
+  is_pregnant   Boolean   @default(false)
+  is_verified   Boolean   @default(false)
+  is_visible    Boolean   @default(true)
+  date_birth    DateTime  @db.Date
+  deleted       Boolean   @default(false)
+  updated_at    DateTime  @default(now()) @updatedAt
+  created_at    DateTime  @default(now())
+  deleted_at    DateTime?
+
+  user                 User                  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  gender               Gender                @relation(fields: [gender_id], references: [id], onDelete: Cascade)
+  hairColor            ProfileHairColor      @relation(fields: [hair_color_id], references: [id], onDelete: Cascade)
+  userProfileLanguages UserProfileLanguage[]
+  userProfileServices  UserProfileService[]
+
+  @@index([gender_id])
+  @@index([hair_color_id])
+  @@map("user_profiles")
+}
+
+model MobileConfig {
+  id                     String  @id @default(ulid())
+  api_base_url           String  @db.Text
+  x_api_key              String  @db.Text
+  api_geocoding_base_url String? @db.Text
+  api_geocoding_api_key  String? @db.Text
+
+  deleted    Boolean   @default(false)
+  updated_at DateTime  @default(now()) @updatedAt
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+
+  @@map("mobile_config")
+}
