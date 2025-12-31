@@ -15,11 +15,21 @@ export class CreateAccountTypeUseCase {
   ) {}
 
   async execute(payload: CreateAccountTypeDto) {
-    const exists = await this.accountTypesRepository.findByTag(payload.tag);
+    const exists = await this.accountTypesRepository.findUnique({
+      where: { tag: payload.tag },
+      select: {
+        id: true,
+      },
+    });
 
-    const roleExists = await this.rolesRepository.findById(
-      payload.default_role_id,
-    );
+    const roleExists = await this.rolesRepository.findUnique({
+      where: {
+        id: payload.default_role_id,
+      },
+      select: {
+        id: true,
+      },
+    });
 
     if (!roleExists) {
       throw new NotFoundException('role default not found');

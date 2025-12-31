@@ -66,8 +66,7 @@ export const ModelName = {
   User: 'User',
   UserPassword: 'UserPassword',
   AuthSession: 'AuthSession',
-  UserProfile: 'UserProfile',
-  MobileConfig: 'MobileConfig'
+  UserProfile: 'UserProfile'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -316,21 +315,6 @@ export const UserProfileScalarFieldEnum = {
 } as const
 
 export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
-
-
-export const MobileConfigScalarFieldEnum = {
-  id: 'id',
-  api_base_url: 'api_base_url',
-  x_api_key: 'x_api_key',
-  api_geocoding_base_url: 'api_geocoding_base_url',
-  api_geocoding_api_key: 'api_geocoding_api_key',
-  deleted: 'deleted',
-  updated_at: 'updated_at',
-  created_at: 'created_at',
-  deleted_at: 'deleted_at'
-} as const
-
-export type MobileConfigScalarFieldEnum = (typeof MobileConfigScalarFieldEnum)[keyof typeof MobileConfigScalarFieldEnum]
 
 
 export const SortOrder = {

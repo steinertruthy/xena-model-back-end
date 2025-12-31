@@ -19,4 +19,9 @@ export class AccountTypesController {
   findAll() {
     return this.accountTypesService.findAll();
   }
+
+  @Get('/publics')
+  findAllPublics() {
+    return this.accountTypesService.findAllPublics();
+  }
 }

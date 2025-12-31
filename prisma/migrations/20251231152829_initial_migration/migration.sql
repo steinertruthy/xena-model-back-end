@@ -230,21 +230,6 @@ CREATE TABLE "user_profiles" (
     CONSTRAINT "user_profiles_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
-CREATE TABLE "mobile_config" (
-    "id" TEXT NOT NULL,
-    "api_base_url" TEXT NOT NULL,
-    "x_api_key" TEXT NOT NULL,
-    "api_geocoding_base_url" TEXT,
-    "api_geocoding_api_key" TEXT,
-    "deleted" BOOLEAN NOT NULL DEFAULT false,
-    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "deleted_at" TIMESTAMP(3),
-
-    CONSTRAINT "mobile_config_pkey" PRIMARY KEY ("id")
-);
-
 -- CreateIndex
 CREATE UNIQUE INDEX "countries_code_key" ON "countries"("code");
 

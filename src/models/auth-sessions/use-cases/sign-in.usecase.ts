@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import argon, { argon2d } from 'argon2';
+import argon from 'argon2';
 import dayjs from 'dayjs';
 import ms, { StringValue } from 'ms';
 import { DetectResult } from 'node-device-detector';
@@ -29,7 +29,7 @@ export class SignInUseCase {
   ) {
     const errorMessageText = 'email or password invalid';
 
-    const userExists = await this.usersRepository.findOne({
+    const userExists = await this.usersRepository.findUnique({
       where: {
         email: payload.email,
       },

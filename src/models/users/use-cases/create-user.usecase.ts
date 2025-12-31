@@ -20,17 +20,25 @@ export class CreateUserUseCase {
   async execute(payload: CreateUserDto) {
     const { password, ...restPayload } = payload;
 
-    const accountTypeExists = await this.accountTypesRepository.findById(
-      restPayload.account_type_id,
-    );
+    const accountTypeExists = await this.accountTypesRepository.findUnique({
+      where: {
+        id: restPayload.account_type_id,
+      },
+      select: {
+        id: true,
+        default_role_id: true,
+      },
+    });
 
     if (!accountTypeExists) {
       throw new NotFoundException('account type not found');
     }
 
-    const roleExists = await this.rolesRepository.findById(
-      accountTypeExists.default_role_id,
-    );
+    const roleExists = await this.rolesRepository.findUnique({
+      where: {
+        id: accountTypeExists.default_role_id,
+      },
+    });
 
     if (!roleExists) {
       throw new NotFoundException('role default not found');
@@ -38,7 +46,7 @@ export class CreateUserUseCase {
 
     const hashPassword = await argon2.hash(password);
 
-    const emailExists = await this.usersRepository.findOne({
+    const emailExists = await this.usersRepository.findUnique({
       where: {
         email: restPayload.email,
       },

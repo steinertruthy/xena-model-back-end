@@ -1,6 +1,8 @@
+import { Injectable } from '@nestjs/common';
+import { Prisma } from 'prisma/generated/client';
+import { PrismaPromise } from 'prisma/generated/internal/prismaNamespace';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { CreateAccountTypeDto } from './dto/create-account-type.dto';
-import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AccountTypesRepository {
@@ -10,24 +12,34 @@ export class AccountTypesRepository {
     return this.prisma.accountType.create({ data: payload });
   }
 
-  findById(id: string, deleted = false) {
-    return this.prisma.accountType.findUnique({
-      where: { id, deleted: deleted },
-    });
+  findUnique<T extends Prisma.AccountTypeFindUniqueArgs>(
+    args: Prisma.SelectSubset<T, Prisma.AccountTypeFindUniqueArgs>,
+  ) {
+    args.where = this.defaultWhere(args.where);
+    return this.prisma.accountType.findUnique(args);
   }
 
-  findByTag(tag: string) {
-    return this.prisma.accountType.findUnique({ where: { tag } });
-  }
+  findMany<T extends Prisma.AccountTypeFindManyArgs>(
+    args?: Prisma.SelectSubset<T, Prisma.AccountTypeFindManyArgs>,
+  ) {
+    const { where, ...restArgs } =
+      args ?? ({} as Prisma.AccountTypeFindManyArgs);
 
-  findAll(deleted = false) {
+    const defaultWhere = this.defaultWhere(where);
+
     return this.prisma.accountType.findMany({
-      where: {
-        deleted: deleted,
-      },
+      where: defaultWhere,
       orderBy: {
         name: 'asc',
       },
-    });
+      ...restArgs,
+    }) as PrismaPromise<Prisma.AccountTypeGetPayload<T>[]>;
+  }
+
+  private defaultWhere<T>(where: T) {
+    return {
+      deleted: false,
+      ...where,
+    };
   }
 }

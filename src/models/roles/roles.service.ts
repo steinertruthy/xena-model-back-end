@@ -5,6 +5,6 @@ import { RolesRepository } from './roles.repository';
 export class RolesService {
   constructor(private readonly rolesRepository: RolesRepository) {}
   findAll() {
-    return this.rolesRepository.findAll();
+    return this.rolesRepository.findMany();
   }
 }

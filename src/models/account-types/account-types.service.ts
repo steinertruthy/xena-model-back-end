@@ -8,6 +8,14 @@ export class AccountTypesService {
   ) {}
 
   findAll() {
-    return this.accountTypesRepository.findAll();
+    return this.accountTypesRepository.findMany();
+  }
+
+  async findAllPublics() {
+    return await this.accountTypesRepository.findMany({
+      where: {
+        is_public: true,
+      },
+    });
   }
 }

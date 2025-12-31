@@ -290,17 +290,3 @@ model UserProfile {
   @@map("user_profiles")
 }
 
-model MobileConfig {
-  id                     String  @id @default(ulid())
-  api_base_url           String  @db.Text
-  x_api_key              String  @db.Text
-  api_geocoding_base_url String? @db.Text
-  api_geocoding_api_key  String? @db.Text
-
-  deleted    Boolean   @default(false)
-  updated_at DateTime  @default(now()) @updatedAt
-  created_at DateTime  @default(now())
-  deleted_at DateTime?
-
-  @@map("mobile_config")
-}

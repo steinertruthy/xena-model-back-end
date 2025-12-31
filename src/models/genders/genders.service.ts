@@ -5,7 +5,7 @@ import { GendersRepository } from './genders.repository';
 export class GendersService {
   constructor(private readonly gendersRepository: GendersRepository) {}
 
-  findAll() {
-    return this.gendersRepository.findAll();
+  async findAll() {
+    return await this.gendersRepository.findMany();
   }
 }

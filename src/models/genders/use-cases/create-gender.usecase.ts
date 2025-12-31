@@ -7,7 +7,11 @@ export class CreateGenderUseCase {
   constructor(private readonly gendersRepository: GendersRepository) {}
 
   async execute(payload: CreateGenderDto) {
-    const exists = await this.gendersRepository.findByTag(payload.tag);
+    const exists = await this.gendersRepository.findUnique({
+      where: {
+        tag: payload.tag,
+      },
+    });
 
     if (exists) {
       throw new ConflictException('tag already exists');

@@ -1,6 +1,8 @@
+import { Injectable } from '@nestjs/common';
+import { PrismaPromise } from '@prisma/client/runtime/client';
+import { Prisma } from 'prisma/generated/client';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { CreateGenderDto } from './dto/create-gender.dto';
-import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class GendersRepository {
@@ -10,31 +12,30 @@ export class GendersRepository {
     return this.prisma.gender.create({ data: payload });
   }
 
-  findById(id: string, deleted = false) {
-    return this.prisma.gender.findUnique({
-      where: {
-        id,
-        deleted: deleted,
-      },
-    });
+  findUnique<T extends Prisma.GenderFindUniqueArgs>(
+    args: Prisma.SelectSubset<T, Prisma.GenderFindUniqueArgs>,
+  ) {
+    args.where = this.defaultWhere(args.where);
+    return this.prisma.gender.findUnique(args);
   }
 
-  findByTag(tag: string) {
-    return this.prisma.gender.findUnique({
-      where: {
-        tag,
-      },
-    });
-  }
-
-  findAll(deleted = false) {
+  findMany<T extends Prisma.GenderFindManyArgs>(
+    args?: Prisma.SelectSubset<T, Prisma.GenderFindManyArgs>,
+  ) {
+    const { where, ...restArgs } = args ?? ({} as Prisma.GenderFindManyArgs);
     return this.prisma.gender.findMany({
-      where: {
-        deleted: deleted,
-      },
+      where: this.defaultWhere(where),
       orderBy: {
         name: 'asc',
       },
-    });
+      ...restArgs,
+    }) as PrismaPromise<Prisma.GenderGetPayload<T>>;
+  }
+
+  private defaultWhere<T>(args: T) {
+    return {
+      deleted: false,
+      ...args,
+    };
   }
 }

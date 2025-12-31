@@ -25,12 +25,10 @@ export class UsersRepository {
     });
   }
 
-  findOne<T extends Prisma.UserFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.UserFindFirstArgs>,
-  ): Promise<Prisma.UserGetPayload<T> | null> {
-    const { where } = args;
-
-    args.where = this.defaultWhere(where);
+  findUnique<T extends Prisma.UserFindUniqueArgs>(
+    args: Prisma.SelectSubset<T, Prisma.UserFindUniqueArgs>,
+  ) {
+    args.where = this.defaultWhere(args.where);
     return this.prisma.user.findUnique(args);
   }
 
