@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { AppController } from './app.controller';
@@ -11,6 +16,8 @@ import { AuthSessionsModule } from './models/auth-sessions/auth-sessions.module'
 import { GendersModule } from './models/genders/genders.module';
 import { RolesModule } from './models/roles/roles.module';
 import { UsersModule } from './models/users/users.module';
+import { MobileConfig } from './models/mobile-configs/entities/mobile-config.entity';
+import { MobileConfigsModule } from './models/mobile-configs/mobile-configs.module';
 
 @Module({
   imports: [
@@ -23,6 +30,7 @@ import { UsersModule } from './models/users/users.module';
     JwtModule.register({
       global: true,
     }),
+    MobileConfigsModule,
     AuthSessionsModule,
     UsersModule,
     RolesModule,
@@ -36,6 +44,12 @@ import { UsersModule } from './models/users/users.module';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(XApiKeyMiddleware).forRoutes('*');
+    consumer
+      .apply(XApiKeyMiddleware)
+      .exclude({
+        method: RequestMethod.GET,
+        path: '/api/mobile-config',
+      })
+      .forRoutes('*');
   }
 }

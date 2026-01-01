@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Patch,
   Post,
   Req,
@@ -62,10 +63,10 @@ export class AuthSessionsController {
     };
   }
 
-  @Patch('/me')
+  @Get('/me')
   @UseGuards(AuthGuard)
   async me(@Req() req: FastifyRequest) {
-    return this.authSessionsService.me(req.user!.id);
+    return await this.authSessionsService.me(req.user!.id);
   }
 
   private getUserAgent(req: FastifyRequest) {
